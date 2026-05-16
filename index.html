@@ -70,6 +70,28 @@
       opacity: .55;
       z-index: 0;
     }
+
+    /* Hero background video */
+    .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(250,250,250,0.55) 0%, rgba(250,250,250,0.78) 55%, rgba(250,250,250,0.95) 100%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg-video { display: none; }
+    }
     .glass {
       background: rgba(255,255,255,0.55);
       backdrop-filter: saturate(160%) blur(18px);
@@ -259,8 +281,15 @@
   <div class="bg-aura" style="top:900px; left:30%; width:600px; height:600px; background: radial-gradient(closest-side, #DDD6FE, transparent); opacity:.35;"></div>
 
   <!-- HERO -->
-  <section id="top" class="relative pt-32 sm:pt-40 lg:pt-48 pb-20 lg:pb-32">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+  <section id="top" class="relative pt-32 sm:pt-40 lg:pt-48 pb-20 lg:pb-32 overflow-hidden">
+    <!-- Background video -->
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="0516.mp4" type="video/mp4" />
+    </video>
+    <!-- Readability overlay: keeps the page's light paper feel + dark text legible -->
+    <div class="hero-bg-overlay" aria-hidden="true"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="flex flex-col items-start">
         <span class="pill reveal"><span class="dot"></span> 2022-yildan beri • Toshkentda 1 ta filial</span>
 
