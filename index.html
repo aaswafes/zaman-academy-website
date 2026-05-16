@@ -131,6 +131,37 @@
       to   { transform: translateX(-50%); }
     }
 
+    /* Certificates marquee — image cards in a slower scroll */
+    .cert-marquee {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+    .cert-marquee-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: marquee 70s linear infinite;
+    }
+    .cert-marquee:hover .cert-marquee-track { animation-play-state: paused; }
+    .cert-card {
+      flex: 0 0 auto;
+      width: 280px;
+      aspect-ratio: 700 / 950;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--border2);
+      box-shadow: 0 20px 40px -24px rgba(9,9,11,.18), 0 6px 16px -10px rgba(9,9,11,.08);
+      transition: transform .35s cubic-bezier(.2,.7,.2,1);
+    }
+    .cert-card:hover { transform: translateY(-4px); }
+    .cert-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (min-width: 768px) { .cert-card { width: 320px; } }
+    @media (prefers-reduced-motion: reduce) {
+      .cert-marquee-track { animation: none; }
+    }
+
     /* Reveal on scroll */
     .reveal {
       opacity: 0;
@@ -733,12 +764,50 @@
     </div>
   </section>
 
+  <!-- CERTIFICATES -->
+  <section id="sertifikatlar" class="relative py-24 sm:py-32 overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="section-no reveal">07 — Sertifikatlar</div>
+      <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-4xl">
+        Davlat tomonidan<br/>
+        <span class="italic">tan olingan</span> natijalar.
+      </h2>
+      <p class="reveal mt-6 max-w-2xl text-lg text-zinc-600 leading-relaxed">
+        O&rsquo;quvchilarimiz O&rsquo;zbekiston Respublikasi Bilim va malakalarni baholash
+        agentligi tomonidan beriladigan rasmiy Arab tili sertifikatini
+        <span class="text-zinc-900 font-medium">B1, B2 va C1</span> darajalarida qo&rsquo;lga kiritmoqdalar.
+      </p>
+    </div>
+
+    <div class="cert-marquee mt-16">
+      <div class="cert-marquee-track">
+        <figure class="cert-card"><img src="images/certificates/photo_2024-06-21_06-03-39.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2024-06-21_06-18-42.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2024-10-11_17-01-36.jpg" alt="Arab tili sertifikati — C1 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2024-10-11_19-45-51.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2025-12-13_21-52-59.jpg" alt="Arab tili sertifikati — C1 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2026-01-15_17-32-03.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2026-01-15_18-51-31.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card"><img src="images/certificates/photo_2026-05-16_17-20-34.jpg" alt="Arab tili sertifikati — B1 darajasi" loading="lazy" decoding="async"></figure>
+        <!-- duplicate set for seamless loop -->
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-06-21_06-03-39.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-06-21_06-18-42.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-10-11_17-01-36.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-10-11_19-45-51.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2025-12-13_21-52-59.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2026-01-15_17-32-03.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2026-01-15_18-51-31.jpg" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2026-05-16_17-20-34.jpg" alt="" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="savol-javob" class="relative py-24 sm:py-32 bg-cream/40">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12">
         <div class="lg:col-span-4">
-          <div class="section-no reveal">07 — Savol-javob</div>
+          <div class="section-no reveal">08 — Savol-javob</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl leading-[1.02]">
             Tez-tez<br/>so&rsquo;raladigan<br/>
             <span class="italic">savollar</span>.
@@ -825,7 +894,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-7">
-          <div class="section-no reveal">08 — Aloqa</div>
+          <div class="section-no reveal">09 — Aloqa</div>
           <h2 class="reveal mt-4 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.95]">
             Birinchi dars<br/>
             <span class="italic">bepul</span> — keling,<br/>
