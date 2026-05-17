@@ -33,10 +33,21 @@
      ============================================================ */
   const SUPPORTED_LANGS = ['uz', 'en', 'ru'];
 
+  /* Safe localStorage wrappers — Safari private mode, opaque origins, and
+   * locked-down browsers can throw on any access. Falling back to in-memory
+   * keeps the lang switcher functional even when storage is unavailable. */
+  let _memLang = 'uz';
+  const safeLocalGet = (k) => {
+    try { return localStorage.getItem(k); } catch (_) { return k === 'zaman_lang' ? _memLang : null; }
+  };
+  const safeLocalSet = (k, v) => {
+    try { localStorage.setItem(k, v); } catch (_) { if (k === 'zaman_lang') _memLang = v; }
+  };
+
   const detectLang = () => {
-    const stored = (localStorage.getItem('zaman_lang') || '').toLowerCase();
+    const stored = (safeLocalGet('zaman_lang') || '').toLowerCase();
     if (SUPPORTED_LANGS.includes(stored)) return stored;
-    const navLang = (navigator.language || 'uz').slice(0, 2).toLowerCase();
+    const navLang = ((typeof navigator !== 'undefined' && navigator.language) || 'uz').slice(0, 2).toLowerCase();
     return SUPPORTED_LANGS.includes(navLang) ? navLang : 'uz';
   };
 
@@ -45,15 +56,39 @@
     return key.split('.').reduce((acc, k) => (acc && acc[k] != null ? acc[k] : null), window.STRINGS[lang]);
   };
 
+  /* Pick a multilang field from a data object.
+   * Returns obj[field+'_'+lang] when present, else obj[field] (uz default). */
+  const tField = (obj, field, lang) => {
+    if (!obj) return '';
+    if (lang && lang !== 'uz') {
+      const v = obj[field + '_' + lang];
+      if (v != null && v !== '') return v;
+    }
+    return obj[field] != null ? obj[field] : '';
+  };
+
+  /* Re-render hooks for data-driven blocks that depend on the active language.
+   * Each renderer reads detectLang() at render time, so calling them after
+   * localStorage is updated re-localizes any inline labels they bake in. */
+  const langRerenderers = [];
+  const registerLangRerender = (fn) => { if (typeof fn === 'function') langRerenderers.push(fn); };
+
   const setLang = (lang) => {
     if (!SUPPORTED_LANGS.includes(lang)) lang = 'uz';
-    localStorage.setItem('zaman_lang', lang);
+    safeLocalSet('zaman_lang', lang);
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', 'ltr'); // all three scripts run LTR
+    /* Plain text nodes. */
     $$('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
       const v = getStr(lang, key);
       if (v != null) el.textContent = v;
+    });
+    /* Rich markup (italic spans, <br>, <strong>, etc.) — string value is HTML. */
+    $$('[data-i18n-html]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-html');
+      const v = getStr(lang, key);
+      if (v != null) el.innerHTML = v;
     });
     $$('[data-i18n-attr]').forEach((el) => {
       const pair = el.getAttribute('data-i18n-attr') || '';
@@ -64,6 +99,8 @@
         if (v != null) el.setAttribute(attr, v);
       });
     });
+    /* Re-render data-driven blocks so their inline labels pick up the new lang. */
+    langRerenderers.forEach((fn) => { try { fn(); } catch (_) {} });
     /* Reflect active state in any lang-switcher buttons. */
     $$('[data-lang-btn]').forEach((b) => {
       const active = b.getAttribute('data-lang-btn') === lang;
@@ -633,18 +670,21 @@
     if (!grid || !window.TEACHERS) return;
     const limit = parseInt(grid.getAttribute('data-limit') || '0', 10);
     const list = limit > 0 ? window.TEACHERS.slice(0, limit) : window.TEACHERS;
+    const lang = detectLang();
+    const yearsLabel = getStr(lang, 'TEACHERS.YEARS_SUFFIX') || 'yil tajriba';
+    const moreLabel = getStr(lang, 'TEACHERS.MORE') || 'Batafsil →';
     grid.innerHTML = list.map((t) => `
       <article class="reveal card p-6 sm:p-7 flex flex-col cursor-pointer" data-teacher-id="${t.id}" role="button" tabindex="0">
         <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-100">
-          <img src="${t.photo}" alt="${t.name}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+          <img src="${t.photo}" alt="${tField(t,'name',lang)}" loading="lazy" decoding="async" class="w-full h-full object-cover">
         </div>
         <div class="mt-5 flex items-center gap-2">
           <span class="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-100">${t.badge}</span>
-          <span class="text-xs text-zinc-500">${t.years} yil tajriba</span>
+          <span class="text-xs text-zinc-500">${t.years} ${yearsLabel}</span>
         </div>
-        <h3 class="font-display text-2xl sm:text-3xl mt-3 leading-none">${t.name}</h3>
-        <p class="mt-3 text-zinc-600 leading-relaxed text-sm">${t.bioShort}</p>
-        <div class="mt-5 text-sm text-zinc-900 link-underline self-start">Batafsil →</div>
+        <h3 class="font-display text-2xl sm:text-3xl mt-3 leading-none">${tField(t,'name',lang)}</h3>
+        <p class="mt-3 text-zinc-600 leading-relaxed text-sm">${tField(t,'bioShort',lang)}</p>
+        <div class="mt-5 text-sm text-zinc-900 link-underline self-start">${moreLabel}</div>
       </article>
     `).join('');
     grid.addEventListener('click', (e) => openTeacherCard(e));
@@ -663,6 +703,11 @@
     const eduLabel = getStr(lang, 'TEACHERS.MODAL_EDUCATION') || 'Ta’lim';
     const certsLabel = getStr(lang, 'TEACHERS.MODAL_CERTS') || 'Sertifikatlar';
     const contactLabel = getStr(lang, 'TEACHERS.MODAL_CONTACT') || 'Telegram orqali bog’lanish';
+    const yearsLabel = getStr(lang, 'TEACHERS.YEARS_SUFFIX') || 'yil tajriba';
+    const tName = tField(t, 'name', lang);
+    const tBioLong = tField(t, 'bioLong', lang);
+    const tEducation = (t['education_' + lang] || t.education || []);
+    const tCerts = (t['certs_' + lang] || t.certs || []);
     const overlay = document.createElement('div');
     overlay.className = 'fixed inset-0 z-[110] flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm';
     overlay.setAttribute('role', 'dialog');
@@ -676,25 +721,25 @@
         <div class="p-6 sm:p-8">
           <div class="flex flex-col sm:flex-row gap-6">
             <div class="w-full sm:w-44 shrink-0 aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-100">
-              <img src="${t.photo}" alt="${t.name}" class="w-full h-full object-cover">
+              <img src="${t.photo}" alt="${tName}" class="w-full h-full object-cover">
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-100">${t.badge}</span>
-                <span class="text-xs text-zinc-500">${t.years} yil tajriba</span>
+                <span class="text-xs text-zinc-500">${t.years} ${yearsLabel}</span>
               </div>
-              <h3 class="font-display text-3xl sm:text-4xl mt-2 leading-none">${t.name}</h3>
-              <p class="mt-4 text-zinc-700 leading-relaxed">${t.bioLong}</p>
+              <h3 class="font-display text-3xl sm:text-4xl mt-2 leading-none">${tName}</h3>
+              <p class="mt-4 text-zinc-700 leading-relaxed">${tBioLong}</p>
             </div>
           </div>
           <div class="mt-6 grid sm:grid-cols-2 gap-6">
             <div>
               <div class="text-xs uppercase tracking-widest text-zinc-500">${eduLabel}</div>
-              <ul class="mt-2 text-sm text-zinc-800 space-y-1">${t.education.map((x) => `<li>— ${x}</li>`).join('')}</ul>
+              <ul class="mt-2 text-sm text-zinc-800 space-y-1">${tEducation.map((x) => `<li>— ${x}</li>`).join('')}</ul>
             </div>
             <div>
               <div class="text-xs uppercase tracking-widest text-zinc-500">${certsLabel}</div>
-              <ul class="mt-2 text-sm text-zinc-800 space-y-1">${t.certs.map((x) => `<li>— ${x}</li>`).join('')}</ul>
+              <ul class="mt-2 text-sm text-zinc-800 space-y-1">${tCerts.map((x) => `<li>— ${x}</li>`).join('')}</ul>
             </div>
           </div>
           <a href="${t.telegram}" target="_blank" rel="noopener" class="btn btn-primary mt-6">
@@ -725,13 +770,16 @@
     if (!grid || !window.GALLERY) return;
     const limit = parseInt(grid.getAttribute('data-limit') || '0', 10);
     const items = limit > 0 ? window.GALLERY.slice(0, limit) : window.GALLERY;
-    grid.innerHTML = items.map((g) => `
-      <a href="${g.src}" data-lightbox="academy" data-caption="${g.caption}" data-alt="${g.caption}"
+    const lang = detectLang();
+    grid.innerHTML = items.map((g) => {
+      const cap = tField(g, 'caption', lang);
+      return `
+      <a href="${g.src}" data-lightbox="academy" data-caption="${cap}" data-alt="${cap}"
          class="reveal block aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 group">
-        <img src="${g.src}" alt="${g.caption}" loading="lazy" decoding="async"
+        <img src="${g.src}" alt="${cap}" loading="lazy" decoding="async"
              class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700">
-      </a>
-    `).join('');
+      </a>`;
+    }).join('');
   };
 
   /* ============================================================
@@ -744,13 +792,18 @@
     const lFrom = getStr(lang, 'RESULTS.LABEL_FROM') || 'Boshlanish';
     const lTo = getStr(lang, 'RESULTS.LABEL_TO') || 'Natija';
     const lCert = getStr(lang, 'RESULTS.LABEL_CERT') || 'Sertifikat';
-    grid.innerHTML = window.RESULTS.map((r) => `
+    grid.innerHTML = window.RESULTS.map((r) => {
+      const name = tField(r, 'name', lang);
+      const role = tField(r, 'role', lang);
+      const dur = tField(r, 'duration', lang);
+      const quote = tField(r, 'quote', lang);
+      return `
       <figure class="reveal card p-7 flex flex-col">
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-full bg-zinc-100 flex items-center justify-center font-medium text-zinc-700">${r.name.charAt(0)}</div>
+          <div class="w-11 h-11 rounded-full bg-zinc-100 flex items-center justify-center font-medium text-zinc-700">${name.charAt(0)}</div>
           <div>
-            <div class="text-sm font-medium">${r.name}</div>
-            <div class="text-xs text-zinc-500">${r.role}</div>
+            <div class="text-sm font-medium">${name}</div>
+            <div class="text-xs text-zinc-500">${role}</div>
           </div>
         </div>
         <div class="mt-6 grid grid-cols-3 gap-3 text-center">
@@ -766,14 +819,14 @@
             <div class="font-display text-3xl mt-1 text-rose-500">${r.after}</div>
           </div>
         </div>
-        <div class="mt-3 text-xs text-zinc-500 text-center">${r.duration} • ${lCert}: <span class="text-zinc-800">${r.cert}</span></div>
-        <blockquote class="mt-5 italic text-zinc-700 leading-relaxed">“${r.quote}”</blockquote>
+        <div class="mt-3 text-xs text-zinc-500 text-center">${dur} • ${lCert}: <span class="text-zinc-800">${r.cert}</span></div>
+        <blockquote class="mt-5 italic text-zinc-700 leading-relaxed">“${quote}”</blockquote>
         ${r.youtubeId ? `
           <div class="mt-5 aspect-video rounded-xl overflow-hidden bg-zinc-900">
-            <iframe src="https://www.youtube-nocookie.com/embed/${r.youtubeId}" title="${r.name}" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/${r.youtubeId}" title="${name}" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
           </div>` : ''}
-      </figure>
-    `).join('');
+      </figure>`;
+    }).join('');
   };
 
   /* ============================================================
@@ -785,6 +838,12 @@
     renderTeachers();
     renderGallery();
     renderResults();
+
+    /* Re-run these whenever the user switches language so their inline labels
+     * and data-derived text reflect the new locale. */
+    registerLangRerender(renderTeachers);
+    registerLangRerender(renderGallery);
+    registerLangRerender(renderResults);
 
     initLangSwitcher();
     initReveal();
