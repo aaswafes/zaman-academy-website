@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <title>Galereya — Zaman Akademiyasi</title>
+  <meta name="description" content="Zaman Akademiyasi: dars xonalari, kutubxona, guruh darslari va bitiruv marosimi rasmlari." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+  <meta property="og:title" content="Galereya — Zaman Akademiyasi" />
+  <meta property="og:description" content="Dars xonalari, kutubxona, guruh darslari va bitiruv marosimi rasmlari." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aaswafes.github.io/zaman-academy-website/gallery.html" />
+  <meta property="og:image" content="https://aaswafes.github.io/zaman-academy-website/img/og-default.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galereya — Zaman Akademiyasi" />
+  <meta name="twitter:image" content="https://aaswafes.github.io/zaman-academy-website/img/og-default.svg" />
+
+  <link rel="canonical" href="https://aaswafes.github.io/zaman-academy-website/gallery.html" />
+  <link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=uz" />
+  <link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=en" />
+  <link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=ru" />
+  <link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/gallery.html" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display: ['"Instrument Serif"', 'serif'], sans: ['Inter', 'ui-sans-serif', 'system-ui'], arabic: ['"Noto Naskh Arabic"', 'serif'] },
+      colors: { ink: '#09090B', paper: '#FAFAFA', cream: '#F5F2EC', border2: '#E4E4E7', accent: '#EC4899' }
+    }}}
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: #09090B; background: #FAFAFA; -webkit-font-smoothing: antialiased; }
+    .font-display { font-family: 'Instrument Serif', serif; letter-spacing: -0.02em; }
+    .arabic-mark { font-family: 'Noto Naskh Arabic', serif; direction: rtl; }
+    .glass { background: rgba(255,255,255,.55); backdrop-filter: saturate(160%) blur(18px); -webkit-backdrop-filter: saturate(160%) blur(18px); border: 1px solid rgba(228,228,231,.7); }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.9rem 1.4rem; border-radius:999px; font-weight:500; cursor:pointer; transition: transform .25s ease, background .25s; }
+    .btn-primary { background:#09090B; color:#fff; } .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost { background: rgba(9,9,11,.04); color:#09090B; border: 1px solid #E4E4E7; }
+    .link-underline { background: linear-gradient(currentColor, currentColor) bottom left / 0 1px no-repeat; transition: background-size .4s; }
+    .link-underline:hover { background-size: 100% 1px; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s, transform .9s; }
+    .reveal.is-in { opacity: 1; transform: none; }
+    .nav-link { color:#52525b; transition: color .2s; } .nav-link:hover { color:#09090B; }
+    [data-lang-btn].is-active { background: rgba(9,9,11,.05); font-weight:600; }
+    header[data-header].is-hidden { transform: translateY(-130%); }
+    header[data-header].is-scrolled .glass { box-shadow: 0 12px 32px -16px rgba(9,9,11,0.18); }
+    [data-lead-modal] { background: rgba(9,9,11,0.65); backdrop-filter: blur(6px); }
+    :focus-visible { outline: 2px solid #EC4899; outline-offset: 3px; border-radius: 6px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation:none !important; transition:none !important; } .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+  <header data-header class="fixed inset-x-0 top-0 z-50 transition-transform duration-300 will-change-transform">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3 sm:mt-4">
+      <div class="glass rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <span class="font-display text-2xl">Zaman</span>
+          <span class="hidden sm:inline arabic-mark text-lg text-zinc-400">زمان</span>
+        </a>
+        <nav class="hidden lg:flex items-center gap-6 text-sm">
+          <a href="index.html#kurslar"     class="nav-link link-underline" data-i18n="NAV.COURSES">Kurslar</a>
+          <a href="teachers.html"          class="nav-link link-underline" data-i18n="NAV.TEACHERS">Ustozlar</a>
+          <a href="gallery.html"           class="nav-link link-underline text-zinc-900 font-medium" data-i18n="NAV.GALLERY">Galereya</a>
+          <a href="index.html#natijalar"   class="nav-link link-underline" data-i18n="NAV.RESULTS">Natijalar</a>
+          <a href="index.html#narxlar"     class="nav-link link-underline" data-i18n="NAV.PRICING">Narxlar</a>
+          <a href="index.html#savol-javob" class="nav-link link-underline" data-i18n="NAV.FAQ">Savol-javob</a>
+          <a href="index.html#aloqa"       class="nav-link link-underline" data-i18n="NAV.CONTACT">Aloqa</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <div class="relative">
+            <button type="button" data-lang-toggle aria-haspopup="true" aria-expanded="false" class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-3 py-2 rounded-full hover:bg-zinc-900/5">
+              <span data-lang-current>UZ</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div data-lang-menu class="hidden absolute right-0 mt-2 w-32 rounded-2xl border border-zinc-200 bg-white shadow-xl p-1 z-10">
+              <button data-lang-btn="uz" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50">Oʻzbekcha</button>
+              <button data-lang-btn="en" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50">English</button>
+              <button data-lang-btn="ru" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50">Русский</button>
+            </div>
+          </div>
+          <button type="button" data-cta="lead" class="btn btn-primary text-sm py-2.5 px-4 hidden sm:inline-flex">
+            <span data-i18n="NAV.CTA">Bepul sinov darsi</span>
+          </button>
+          <button type="button" data-drawer-toggle aria-expanded="false" aria-label="Menyu" class="lg:hidden w-10 h-10 rounded-full bg-white/70 border border-zinc-200 flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-drawer" data-drawer class="hidden fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm lg:hidden">
+    <aside class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl flex flex-col">
+      <div class="p-5 flex items-center justify-between border-b border-zinc-100">
+        <span class="font-display text-2xl">Zaman</span>
+        <button type="button" data-drawer-close aria-label="Yopish" class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto p-5 text-lg space-y-2">
+        <a href="index.html#kurslar" class="block py-2">Kurslar</a>
+        <a href="teachers.html" class="block py-2">Ustozlar</a>
+        <a href="gallery.html" class="block py-2 text-rose-500">Galereya</a>
+        <a href="index.html#natijalar" class="block py-2">Natijalar</a>
+        <a href="index.html#narxlar" class="block py-2">Narxlar</a>
+        <a href="index.html#savol-javob" class="block py-2">Savol-javob</a>
+        <a href="index.html#aloqa" class="block py-2">Aloqa</a>
+      </nav>
+      <div class="p-5 border-t border-zinc-100">
+        <button type="button" data-cta="lead" class="btn btn-primary w-full justify-center">Bepul sinov darsi</button>
+      </div>
+    </aside>
+  </div>
+
+  <section class="pt-32 sm:pt-40 pb-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="text-xs text-zinc-500 mb-6">
+        <a href="index.html" class="link-underline">Bosh sahifa</a> &nbsp;/&nbsp;
+        <span class="text-zinc-900" data-i18n="NAV.GALLERY">Galereya</span>
+      </nav>
+      <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl leading-[0.95]" data-i18n="GALLERY.TITLE">Akademiya ichidan.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-zinc-600 leading-relaxed">
+        Dars xonalari, kutubxona burchagi, guruh darslari va bitiruv marosimi — bizning kunlarimizdan lavhalar.
+      </p>
+    </div>
+  </section>
+
+  <section class="pb-24 sm:pb-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Rendered from window.GALLERY (no data-limit → all photos) -->
+      <div data-gallery-grid class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+      <div class="mt-16 text-center">
+        <button type="button" data-cta="lead" class="btn btn-primary">Bron qilish</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-zinc-400 py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between gap-4 text-xs">
+      <div>© <span id="year"></span> Zaman Xorijiy Tillar Akademiyasi.
+        <a href="public-offer.html" class="hover:text-white ml-3" data-i18n="FOOTER.OFFER">Ommaviy oferta</a>
+        <a href="privacy.html" class="hover:text-white ml-3" data-i18n="FOOTER.PRIVACY">Maxfiylik</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <button data-lang-btn="uz" class="px-3 py-1.5 rounded-full hover:bg-white/10">UZ</button>
+        <button data-lang-btn="en" class="px-3 py-1.5 rounded-full hover:bg-white/10">EN</button>
+        <button data-lang-btn="ru" class="px-3 py-1.5 rounded-full hover:bg-white/10">RU</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lead modal -->
+  <div data-lead-modal role="dialog" aria-modal="true" aria-labelledby="lead-modal-title"
+       class="hidden fixed inset-0 z-[90] items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden relative">
+      <button type="button" data-lead-close aria-label="Yopish" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center z-10">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+      <div class="p-6 sm:p-8">
+        <h2 id="lead-modal-title" class="font-display text-3xl sm:text-4xl leading-none" data-i18n="LEAD.TITLE">Sinov darsiga yozilish</h2>
+        <p class="mt-2 text-sm text-zinc-500" data-i18n="LEAD.DESC">Yozib qoldiring — biz bog'lanamiz.</p>
+        <form class="mt-6 space-y-4" novalidate>
+          <input type="hidden" name="_subject" value="Zaman — sinov darsi murojaati" />
+          <input type="hidden" name="form_source" value="lead-modal-gallery" />
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-name" data-i18n="LEAD.NAME_LABEL">Ismingiz</label>
+            <input id="lm-name" name="name" type="text" required minlength="2" data-i18n-attr="placeholder:LEAD.NAME_PLACEHOLDER" class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900" placeholder="Masalan, Asilbek" />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-phone" data-i18n="LEAD.PHONE_LABEL">Telefon raqam</label>
+            <input id="lm-phone" name="phone" type="tel" required pattern="^\+998 \d{2} \d{3} \d{2} \d{2}$" data-i18n-attr="placeholder:LEAD.PHONE_PLACEHOLDER" class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900" placeholder="+998 __ ___ __ __" />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-course" data-i18n="LEAD.COURSE_LABEL">Qiziqtirgan kurs</label>
+            <select id="lm-course" name="course" class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900">
+              <option>CEFR &amp; at-Tanall</option><option>Fonetika</option><option>Individual dars</option><option>Hali tanlamadim</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-full justify-center" data-i18n="LEAD.SUBMIT">Yuborish</button>
+          <p data-lead-error class="hidden mt-2 text-sm text-rose-600"></p>
+        </form>
+        <div data-lead-success class="hidden text-center py-6">
+          <h3 class="mt-4 font-display text-3xl" data-i18n="LEAD.SUCCESS_TITLE">Rahmat!</h3>
+          <p class="mt-2 text-zinc-600" data-i18n="LEAD.SUCCESS_BODY">Murojaatingiz qabul qilindi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

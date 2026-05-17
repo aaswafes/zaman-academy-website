@@ -4,15 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0a0a0a" />
+
   <title>Zaman Akademiya — Arab tili. CEFR va at-Tanall ga tayyorlov.</title>
   <meta name="description" content="Toshkentdagi Zaman Akademiyasi — Arab tili CEFR va at-Tanall xalqaro sertifikatlariga tayyorlov. C1/C2 darajadagi ustozlar, natijaga kafolat, birinchi dars bepul." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Zaman Akademiya — Arab tili sertifikatlariga tayyorlov" />
   <meta property="og:description" content="10–12 oyda B2 yoki C1 darajaga. Natijaga kafolat. Birinchi dars bepul." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aaswafes.github.io/zaman-academy-website/" />
+  <meta property="og:image" content="https://aaswafes.github.io/zaman-academy-website/img/og-default.svg" />
+  <meta property="og:site_name" content="Zaman Akademiya" />
+  <meta property="og:locale" content="uz_UZ" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ru_RU" />
 
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Zaman Akademiya — Arab tili sertifikatlariga tayyorlov" />
+  <meta name="twitter:description" content="10–12 oyda B2 yoki C1 darajaga. Natijaga kafolat. Birinchi dars bepul." />
+  <meta name="twitter:image" content="https://aaswafes.github.io/zaman-academy-website/img/og-default.svg" />
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://aaswafes.github.io/zaman-academy-website/" />
+  <link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/?lang=uz" />
+  <link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/?lang=en" />
+  <link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/?lang=ru" />
+  <link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/" />
+
+  <!-- Icons / Manifest -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Preload hero video poster image for paint priority -->
+  <link rel="preload" as="video" href="0516.mp4" type="video/mp4" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- GA4 (swap TODO_GA_ID before launch) -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    /* gtag('js', new Date()); gtag('config', 'TODO_GA_ID'); */
+  </script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=TODO_GA_ID"></script> -->
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -278,34 +317,109 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
     }
+
+    /* Header behavior */
+    header[data-header].is-hidden { transform: translateY(-130%); }
+    header[data-header].is-scrolled .glass { box-shadow: 0 12px 32px -16px rgba(9,9,11,0.18); }
+    [data-lang-btn].is-active { background: rgba(9,9,11,0.05); font-weight: 600; }
+
+    /* Counter row */
+    .counter-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 640px) { .counter-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+    .counter-val { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem, 4.4vw, 3.75rem); line-height: 1; }
+    .counter-suffix { color: #EC4899; }
+
+    /* Lead modal */
+    [data-lead-modal] { background: rgba(9,9,11,0.65); backdrop-filter: blur(6px); }
+
+    /* Focus rings */
+    :focus-visible { outline: 2px solid #EC4899; outline-offset: 3px; border-radius: 6px; }
+    button:focus-visible, a:focus-visible { outline-offset: 4px; }
   </style>
 </head>
 <body class="relative overflow-x-hidden">
 
   <!-- Top bar -->
-  <header class="fixed inset-x-0 top-0 z-50">
+  <header data-header class="fixed inset-x-0 top-0 z-50 transition-transform duration-300 will-change-transform">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3 sm:mt-4">
-      <div class="glass rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between">
-        <a href="#top" class="flex items-center gap-2 group">
+      <div class="glass rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
+        <a href="#top" class="flex items-center gap-2 group shrink-0">
           <span class="font-display text-2xl leading-none tracking-tight">Zaman</span>
           <span class="hidden sm:inline-block w-px h-4 bg-zinc-300"></span>
           <span class="hidden sm:inline arabic-mark text-lg">زمان</span>
         </a>
-        <nav class="hidden md:flex items-center gap-7 text-sm">
-          <a href="#kurslar"     class="nav-link link-underline">Kurslar</a>
-          <a href="#nimaga"      class="nav-link link-underline">Nima uchun biz</a>
-          <a href="#jarayon"     class="nav-link link-underline">Jarayon</a>
-          <a href="#narxlar"     class="nav-link link-underline">Narxlar</a>
-          <a href="#savol-javob" class="nav-link link-underline">Savol-javob</a>
-          <a href="#aloqa"       class="nav-link link-underline">Aloqa</a>
+        <nav class="hidden lg:flex items-center gap-6 text-sm" aria-label="Asosiy navigatsiya">
+          <a href="#kurslar"      class="nav-link link-underline" data-i18n="NAV.COURSES">Kurslar</a>
+          <a href="#ustozlar"     class="nav-link link-underline" data-i18n="NAV.TEACHERS">Ustozlar</a>
+          <a href="#galereya"     class="nav-link link-underline" data-i18n="NAV.GALLERY">Galereya</a>
+          <a href="#natijalar"    class="nav-link link-underline" data-i18n="NAV.RESULTS">Natijalar</a>
+          <a href="#narxlar"      class="nav-link link-underline" data-i18n="NAV.PRICING">Narxlar</a>
+          <a href="#savol-javob"  class="nav-link link-underline" data-i18n="NAV.FAQ">Savol-javob</a>
+          <a href="#aloqa"        class="nav-link link-underline" data-i18n="NAV.CONTACT">Aloqa</a>
         </nav>
-        <a href="#aloqa" class="btn btn-primary text-sm py-2.5 px-4">
-          Bepul sinov darsi
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <div class="flex items-center gap-2">
+          <!-- Lang dropdown -->
+          <div class="relative">
+            <button type="button" data-lang-toggle aria-haspopup="true" aria-expanded="false"
+                    class="hidden sm:inline-flex items-center gap-1 text-xs font-medium px-3 py-2 rounded-full hover:bg-zinc-900/5 transition">
+              <span data-lang-current>UZ</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div data-lang-menu class="hidden absolute right-0 mt-2 w-32 rounded-2xl border border-zinc-200 bg-white shadow-xl p-1 z-10">
+              <button data-lang-btn="uz" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50 transition">Oʻzbekcha</button>
+              <button data-lang-btn="en" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50 transition">English</button>
+              <button data-lang-btn="ru" class="w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-zinc-50 transition">Русский</button>
+            </div>
+          </div>
+          <button type="button" data-cta="lead"
+                  class="btn btn-primary text-sm py-2.5 px-4 hidden sm:inline-flex">
+            <span data-i18n="NAV.CTA">Bepul sinov darsi</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <!-- Mobile hamburger -->
+          <button type="button" data-drawer-toggle aria-expanded="false" aria-controls="mobile-drawer" aria-label="Menyuni ochish"
+                  class="lg:hidden w-10 h-10 rounded-full bg-white/70 border border-zinc-200 flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-drawer" data-drawer class="hidden fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm lg:hidden" aria-hidden="false">
+    <aside class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-2xl flex flex-col">
+      <div class="p-5 flex items-center justify-between border-b border-zinc-100">
+        <div class="flex items-center gap-2">
+          <span class="font-display text-2xl leading-none">Zaman</span>
+          <span class="arabic-mark text-lg text-zinc-400">زمان</span>
+        </div>
+        <button type="button" data-drawer-close aria-label="Yopish"
+                class="w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 transition flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto p-5 text-lg space-y-2" aria-label="Mobil navigatsiya">
+        <a href="#kurslar"      class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.COURSES">Kurslar</a>
+        <a href="#ustozlar"     class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.TEACHERS">Ustozlar</a>
+        <a href="#galereya"     class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.GALLERY">Galereya</a>
+        <a href="#natijalar"    class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.RESULTS">Natijalar</a>
+        <a href="#narxlar"      class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.PRICING">Narxlar</a>
+        <a href="#savol-javob"  class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.FAQ">Savol-javob</a>
+        <a href="#aloqa"        class="block py-2 hover:text-rose-500 transition" data-i18n="NAV.CONTACT">Aloqa</a>
+      </nav>
+      <div class="p-5 border-t border-zinc-100 space-y-3">
+        <button type="button" data-cta="lead" class="btn btn-primary w-full justify-center">
+          <span data-i18n="NAV.CTA">Bepul sinov darsi</span>
+        </button>
+        <div class="flex items-center justify-center gap-2 text-sm">
+          <button data-lang-btn="uz" class="px-3 py-1.5 rounded-full hover:bg-zinc-100 transition">UZ</button>
+          <button data-lang-btn="en" class="px-3 py-1.5 rounded-full hover:bg-zinc-100 transition">EN</button>
+          <button data-lang-btn="ru" class="px-3 py-1.5 rounded-full hover:bg-zinc-100 transition">RU</button>
+        </div>
+      </div>
+    </aside>
+  </div>
 
   <!-- Aura backgrounds -->
   <div class="bg-aura" style="top:-120px; left:-160px; width:520px; height:520px; background: radial-gradient(closest-side, #FBCFE8, transparent);"></div>
@@ -341,11 +455,11 @@
         </p>
 
         <div class="reveal mt-10 flex flex-col sm:flex-row gap-3">
-          <a href="#aloqa" class="btn btn-primary">
-            Bepul sinov darsiga yozilish
+          <button type="button" data-cta="lead" class="btn btn-primary">
+            <span data-i18n="HERO.CTA_PRIMARY">Bepul sinov darsiga yozilish</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#kurslar" class="btn btn-ghost">
+          </button>
+          <a href="#kurslar" class="btn btn-ghost" data-i18n="HERO.CTA_GHOST">
             Kurslarni ko&rsquo;rish
           </a>
         </div>
@@ -401,7 +515,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         <div class="lg:col-span-4">
-          <div class="section-no reveal">01 — Biz haqimizda</div>
+          <div class="section-no reveal" data-i18n="ABOUT.EYEBROW">01 — Biz haqimizda</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl leading-[1.02]">
             Til&mdash;<br/>
             <span class="italic">kelajak uchun</span><br/>
@@ -425,6 +539,26 @@
           </p>
         </div>
       </div>
+
+      <!-- Animated counter row -->
+      <div class="reveal mt-16 lg:mt-20 counter-grid">
+        <div>
+          <div class="counter-val"><span data-counter="4" data-suffix="">0</span><span class="counter-suffix">+</span></div>
+          <div class="mt-2 text-sm text-zinc-500 leading-snug" data-i18n="ABOUT.STAT_YEARS">yillik tajriba</div>
+        </div>
+        <div>
+          <div class="counter-val"><span data-counter="650" data-suffix="">0</span><span class="counter-suffix">+</span></div>
+          <div class="mt-2 text-sm text-zinc-500 leading-snug" data-i18n="ABOUT.STAT_STUDENTS">o&rsquo;quvchi</div>
+        </div>
+        <div>
+          <div class="counter-val"><span data-counter="92" data-suffix="">0</span><span class="counter-suffix">%</span></div>
+          <div class="mt-2 text-sm text-zinc-500 leading-snug" data-i18n="ABOUT.STAT_RATE">B2/C1 muvaffaqiyat</div>
+        </div>
+        <div>
+          <div class="counter-val"><span data-counter="6" data-suffix="">0</span></div>
+          <div class="mt-2 text-sm text-zinc-500 leading-snug" data-i18n="ABOUT.STAT_LEVELS">CEFR darajalari (A1–C2)</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -433,7 +567,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between flex-wrap gap-4">
         <div>
-          <div class="section-no reveal">02 — Kurslar</div>
+          <div class="section-no reveal" data-i18n="COURSES.EYEBROW">02 — Kurslar</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">Sizga mos<br/><span class="italic">yo&rsquo;nalish</span> tanlang.</h2>
         </div>
         <p class="reveal max-w-md text-zinc-600 leading-relaxed">
@@ -465,7 +599,7 @@
               <div class="price-tag">790<span class="text-2xl text-zinc-400 align-top">k</span></div>
               <div class="text-xs text-zinc-500 mt-1">so&rsquo;m / oy</div>
             </div>
-            <a href="#aloqa" class="btn btn-ghost text-sm py-2 px-3">Yozilish →</a>
+            <button type="button" data-cta="lead" class="btn btn-ghost text-sm py-2 px-3">Yozilish →</button>
           </div>
         </article>
 
@@ -492,7 +626,7 @@
               <div class="price-tag">590<span class="text-2xl text-zinc-400 align-top">k</span></div>
               <div class="text-xs text-zinc-500 mt-1">so&rsquo;m / oy</div>
             </div>
-            <a href="#aloqa" class="btn btn-ghost text-sm py-2 px-3">Yozilish →</a>
+            <button type="button" data-cta="lead" class="btn btn-ghost text-sm py-2 px-3">Yozilish →</button>
           </div>
         </article>
 
@@ -518,7 +652,7 @@
               <div class="price-tag text-white">2.4<span class="text-2xl text-zinc-500 align-top">M</span></div>
               <div class="text-xs text-zinc-500 mt-1">so&rsquo;m / oy</div>
             </div>
-            <a href="#aloqa" class="btn text-sm py-2 px-3 bg-white/10 text-white border border-white/20 hover:bg-white/20">Yozilish →</a>
+            <button type="button" data-cta="lead" class="btn text-sm py-2 px-3 bg-white/10 text-white border border-white/20 hover:bg-white/20">Yozilish →</button>
           </div>
         </article>
       </div>
@@ -530,8 +664,24 @@
           <h4 class="font-display text-3xl leading-none">Sarf va Nahv kursi</h4>
           <p class="mt-2 text-zinc-600 max-w-2xl">Arab tili grammatikasi — sarf (morfologiya) va nahv (sintaksis) bo&rsquo;yicha alohida chuqurlashtirilgan kurs. Sertifikatga tayyorlik bilan birga olib boriladi.</p>
         </div>
-        <a href="#aloqa" class="btn btn-ghost text-sm shrink-0">Batafsil →</a>
+        <button type="button" data-cta="lead" class="btn btn-ghost text-sm shrink-0">Batafsil →</button>
       </div>
+    </div>
+  </section>
+
+  <!-- TEACHERS -->
+  <section id="ustozlar" class="relative py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="section-no reveal" data-i18n="TEACHERS.EYEBROW">03 — Ustozlar</div>
+          <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02]" data-i18n="TEACHERS.TITLE">Tajribali ustozlar.</h2>
+        </div>
+        <a href="teachers.html" class="reveal link-underline text-sm text-zinc-900" data-i18n="TEACHERS.CTA">Barcha ustozlar →</a>
+      </div>
+
+      <!-- Renders from window.TEACHERS via js/main.js -->
+      <div data-teachers-grid data-limit="4" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
     </div>
   </section>
 
@@ -540,7 +690,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between flex-wrap gap-4">
         <div>
-          <div class="section-no reveal">03 — Farqimiz</div>
+          <div class="section-no reveal" data-i18n="WHY.EYEBROW">04 — Farqimiz</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">Nima uchun<br/><span class="italic">Zaman</span>.</h2>
         </div>
         <p class="reveal max-w-md text-zinc-600 leading-relaxed">
@@ -605,7 +755,7 @@
   <!-- PROCESS -->
   <section id="jarayon" class="relative py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="section-no reveal">04 — Jarayon</div>
+      <div class="section-no reveal" data-i18n="PROCESS.EYEBROW">05 — Jarayon</div>
       <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-3xl">
         Uch qadamda<br/><span class="italic">natijaga</span>.
       </h2>
@@ -630,87 +780,67 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS / TRUST -->
-  <section class="relative py-24 sm:py-32">
+  <!-- RESULTS (case studies) -->
+  <section id="natijalar" class="relative py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="section-no reveal">05 — O&rsquo;quvchilar</div>
-      <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-4xl">
-        Natijalar haqida<br/>
-        <span class="italic">o&rsquo;quvchilarimizning</span> so&rsquo;zi.
+      <div class="section-no reveal" data-i18n="RESULTS.EYEBROW">06 — Natijalar</div>
+      <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-4xl" data-i18n="RESULTS.TITLE">
+        Real o&rsquo;quvchi natijalari.
       </h2>
 
-      <div class="mt-14 grid lg:grid-cols-3 gap-5">
-        <figure class="reveal card p-7">
-          <div class="arabic-mark text-2xl text-zinc-300">&ldquo;</div>
-          <blockquote class="mt-4 font-display text-2xl leading-snug text-zinc-900 italic">
-            Fonetika kursini tugatib, atigi 3 oyda Qur&rsquo;onni mustaqil o&rsquo;qiy boshladim.
-          </blockquote>
-          <figcaption class="mt-6 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-medium text-zinc-700">A</div>
-            <div>
-              <div class="text-sm font-medium">Asilbek, 19 yosh</div>
-              <div class="text-xs text-zinc-500">Talaba, Toshkent</div>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="reveal card p-7">
-          <div class="arabic-mark text-2xl text-zinc-300">&ldquo;</div>
-          <blockquote class="mt-4 font-display text-2xl leading-snug text-zinc-900 italic">
-            11 oydan keyin at-Tanall sertifikatini qo&rsquo;lga kiritdim. Ustozlar haqiqatan kuchli.
-          </blockquote>
-          <figcaption class="mt-6 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-medium text-zinc-700">M</div>
-            <div>
-              <div class="text-sm font-medium">Madina, 22 yosh</div>
-              <div class="text-xs text-zinc-500">Abituriyent</div>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure class="reveal card p-7">
-          <div class="arabic-mark text-2xl text-zinc-300">&ldquo;</div>
-          <blockquote class="mt-4 font-display text-2xl leading-snug text-zinc-900 italic">
-            Native arab ustoz bilan amaliyot — boshqa markazlarda yo&rsquo;q narsa. Tavsiya qilaman.
-          </blockquote>
-          <figcaption class="mt-6 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center font-medium text-zinc-700">B</div>
-            <div>
-              <div class="text-sm font-medium">Bekzod, 24 yosh</div>
-              <div class="text-xs text-zinc-500">Ishlovchi</div>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
+      <!-- Renders from window.RESULTS via js/main.js -->
+      <div data-results-grid class="mt-14 grid lg:grid-cols-3 gap-5"></div>
     </div>
   </section>
 
   <!-- CERTIFICATES -->
   <section id="sertifikatlar" class="relative py-24 sm:py-32 overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="section-no reveal">06 — Sertifikatlar</div>
-      <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-4xl">
-        Davlat tomonidan<br/>
-        <span class="italic">tan olingan</span> natijalar.
-      </h2>
-      <p class="reveal mt-6 max-w-2xl text-lg text-zinc-600 leading-relaxed">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="section-no reveal" data-i18n="CERTS.EYEBROW">07 — Sertifikatlar</div>
+          <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] max-w-4xl">
+            Davlat tomonidan<br/>
+            <span class="italic">tan olingan</span> natijalar.
+          </h2>
+        </div>
+        <a href="certificate.html" class="reveal link-underline text-sm text-zinc-900" data-i18n="CERTS.CTA_VERIFY">Sertifikatni tekshirish →</a>
+      </div>
+      <p class="reveal mt-6 max-w-2xl text-lg text-zinc-600 leading-relaxed" data-i18n="CERTS.DESC">
         O&rsquo;quvchilarimiz O&rsquo;zbekiston Respublikasi Bilim va malakalarni baholash
         agentligi tomonidan beriladigan rasmiy Arab tili sertifikatini
-        <span class="text-zinc-900 font-medium">B1, B2 va C1</span> darajalarida qo&rsquo;lga kiritmoqdalar.
+        B1, B2 va C1 darajalarida qo&rsquo;lga kiritmoqdalar.
       </p>
     </div>
 
+    <!-- Marquee — click any card to open lightbox -->
     <div class="cert-marquee mt-16">
       <div class="cert-marquee-track">
-        <figure class="cert-card"><img src="images/certificates/photo_2024-06-21_06-03-39.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2024-06-21_06-18-42.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2024-10-11_17-01-36.jpg" alt="Arab tili sertifikati — C1 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2024-10-11_19-45-51.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2025-12-13_21-52-59.jpg" alt="Arab tili sertifikati — C1 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2026-01-15_17-32-03.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2026-01-15_18-51-31.jpg" alt="Arab tili sertifikati — B2 darajasi" loading="lazy" decoding="async"></figure>
-        <figure class="cert-card"><img src="images/certificates/photo_2026-05-16_17-20-34.jpg" alt="Arab tili sertifikati — B1 darajasi" loading="lazy" decoding="async"></figure>
-        <!-- duplicate set for seamless loop -->
+        <a href="images/certificates/photo_2024-06-21_06-03-39.jpg" data-lightbox="certs" data-caption="Xudoyorov Javohir — B2 (20.06.2024) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2024-06-21_06-03-39.jpg" alt="Sertifikat — Xudoyorov Javohir, B2" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2024-06-21_06-18-42.jpg" data-lightbox="certs" data-caption="Shukurlloyeva Mushtariy — B2 (20.06.2024) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2024-06-21_06-18-42.jpg" alt="Sertifikat — Shukurlloyeva Mushtariy, B2" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2024-10-11_17-01-36.jpg" data-lightbox="certs" data-caption="Shoabdiyeva Saodat — C1 (11.10.2024) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2024-10-11_17-01-36.jpg" alt="Sertifikat — Shoabdiyeva Saodat, C1" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2024-10-11_19-45-51.jpg" data-lightbox="certs" data-caption="Tohirova Zilola — B2 (11.10.2024) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2024-10-11_19-45-51.jpg" alt="Sertifikat — Tohirova Zilola, B2" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2025-12-13_21-52-59.jpg" data-lightbox="certs" data-caption="Eshnazarova Fotima — C1 (12.12.2025) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2025-12-13_21-52-59.jpg" alt="Sertifikat — Eshnazarova Fotima, C1" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2026-01-15_17-32-03.jpg" data-lightbox="certs" data-caption="Xoshimxonov Oqilxon — B2 (15.01.2026) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2026-01-15_17-32-03.jpg" alt="Sertifikat — Xoshimxonov Oqilxon, B2" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2026-01-15_18-51-31.jpg" data-lightbox="certs" data-caption="Izzatuloyeva Jasmina — B2 (15.01.2026) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2026-01-15_18-51-31.jpg" alt="Sertifikat — Izzatuloyeva Jasmina, B2" loading="lazy" decoding="async">
+        </a>
+        <a href="images/certificates/photo_2026-05-16_17-20-34.jpg" data-lightbox="certs" data-caption="Azimjonova Hadicha — B1 (02.05.2025) · O‘zbekiston BMB Agentligi" class="cert-card block">
+          <img src="images/certificates/photo_2026-05-16_17-20-34.jpg" alt="Sertifikat — Azimjonova Hadicha, B1" loading="lazy" decoding="async">
+        </a>
+        <!-- duplicate set for seamless loop (decorative copies — not lightbox-linked to avoid duplicate triggers) -->
         <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-06-21_06-03-39.jpg" alt="" loading="lazy" decoding="async"></figure>
         <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-06-21_06-18-42.jpg" alt="" loading="lazy" decoding="async"></figure>
         <figure class="cert-card" aria-hidden="true"><img src="images/certificates/photo_2024-10-11_17-01-36.jpg" alt="" loading="lazy" decoding="async"></figure>
@@ -723,6 +853,22 @@
     </div>
   </section>
 
+  <!-- ACADEMY GALLERY -->
+  <section id="galereya" class="relative py-24 sm:py-32 bg-cream/40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="section-no reveal" data-i18n="GALLERY.EYEBROW">08 — Galereya</div>
+          <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02]" data-i18n="GALLERY.TITLE">Akademiya ichidan.</h2>
+        </div>
+        <a href="gallery.html" class="reveal link-underline text-sm text-zinc-900" data-i18n="GALLERY.CTA">Barcha rasmlar →</a>
+      </div>
+
+      <!-- Renders from window.GALLERY via js/main.js -->
+      <div data-gallery-grid data-limit="6" class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section id="narxlar" class="relative py-24 sm:py-32 bg-ink text-white overflow-hidden">
     <!-- Aura -->
@@ -732,7 +878,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
       <div class="flex items-end justify-between flex-wrap gap-4">
         <div>
-          <div class="section-no reveal" style="color:#a1a1aa">07 — Narxlar</div>
+          <div class="section-no reveal" style="color:#a1a1aa" data-i18n="PRICING.EYEBROW">09 — Narxlar</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] text-white">Aniq narxlar.<br/><span class="italic text-zinc-400">Yashirin to&rsquo;lovlar yo&rsquo;q.</span></h2>
         </div>
         <p class="reveal max-w-md text-zinc-400 leading-relaxed">
@@ -808,7 +954,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12">
         <div class="lg:col-span-4">
-          <div class="section-no reveal">08 — Savol-javob</div>
+          <div class="section-no reveal" data-i18n="FAQ.EYEBROW">10 — Savol-javob</div>
           <h2 class="reveal mt-4 font-display text-5xl sm:text-6xl leading-[1.02]">
             Tez-tez<br/>so&rsquo;raladigan<br/>
             <span class="italic">savollar</span>.
@@ -895,7 +1041,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
         <div class="lg:col-span-7">
-          <div class="section-no reveal">09 — Aloqa</div>
+          <div class="section-no reveal" data-i18n="CONTACT.EYEBROW">11 — Aloqa</div>
           <h2 class="reveal mt-4 font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.95]">
             Birinchi dars<br/>
             <span class="italic">bepul</span> — keling,<br/>
@@ -929,7 +1075,14 @@
             <div>
               <div class="text-xs uppercase tracking-widest text-zinc-500">Manzil</div>
               <p class="mt-2 text-zinc-900 leading-relaxed">Toshkent sh., Olmazor t.,<br/>Qiziltut tor ko&rsquo;chasi 84-1<br/><span class="text-zinc-500">Chorsu bozori yaqinida</span></p>
-              <a href="https://yandex.uz/maps?whatshere%5Bpoint%5D=69.23074247897723%2C41.32612468156315&whatshere%5Bzoom%5D=18.345442&ll=69.2307424789772%2C41.326124681187444&z=18.345442" target="_blank" rel="noopener" class="link-underline mt-2 inline-block text-sm text-zinc-900">Yandex Maps&rsquo;da ko&rsquo;rish ↗</a>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <a href="https://yandex.uz/maps?whatshere%5Bpoint%5D=69.23074247897723%2C41.32612468156315&whatshere%5Bzoom%5D=18.345442&ll=69.2307424789772%2C41.326124681187444&z=18.345442"
+                   target="_blank" rel="noopener" class="btn btn-ghost text-xs py-1.5 px-3" data-i18n="CONTACT.OPEN_YANDEX">Yandex Maps</a>
+                <a href="https://www.google.com/maps?q=41.32612468,69.23074248"
+                   target="_blank" rel="noopener" class="btn btn-ghost text-xs py-1.5 px-3" data-i18n="CONTACT.OPEN_GOOGLE">Google Maps</a>
+                <a href="https://2gis.uz/tashkent/geo/41.326125,69.230742"
+                   target="_blank" rel="noopener" class="btn btn-ghost text-xs py-1.5 px-3" data-i18n="CONTACT.OPEN_2GIS">2GIS</a>
+              </div>
             </div>
             <div>
               <div class="text-xs uppercase tracking-widest text-zinc-500">Ish vaqti</div>
@@ -939,9 +1092,9 @@
             <div>
               <div class="text-xs uppercase tracking-widest text-zinc-500">Qo&rsquo;shimcha raqamlar</div>
               <p class="mt-2 text-zinc-900 leading-relaxed tabular">
-                +998 90 026 00 42<br/>
-                +998 77 067 00 42<br/>
-                +998 77 068 00 42
+                <a href="tel:+998900260042" class="hover:text-rose-500 transition">+998 90 026 00 42</a><br/>
+                <a href="tel:+998770670042" class="hover:text-rose-500 transition">+998 77 067 00 42</a><br/>
+                <a href="tel:+998770680042" class="hover:text-rose-500 transition">+998 77 068 00 42</a>
               </p>
             </div>
             <div>
@@ -954,42 +1107,55 @@
               </ul>
             </div>
           </div>
+
+          <!-- Embedded Yandex map -->
+          <div class="reveal mt-12 aspect-[16/9] rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-100">
+            <iframe
+              src="https://yandex.uz/map-widget/v1/?ll=69.230742%2C41.326125&mode=whatshere&whatshere%5Bpoint%5D=69.230742%2C41.326125&whatshere%5Bzoom%5D=18&z=18"
+              width="100%" height="100%" frameborder="0" allow="fullscreen" loading="lazy"
+              title="Zaman Akademiyasi joylashuvi Yandex Maps’da" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
 
-        <!-- Inline form -->
+        <!-- Inline form (handler in js/main.js — no inline script) -->
         <div class="lg:col-span-5">
           <form class="reveal card p-7 sm:p-8" id="lead-form" novalidate>
-            <h3 class="font-display text-3xl leading-none">Sinov darsiga yozilish</h3>
-            <p class="mt-2 text-sm text-zinc-500">Yozib qoldiring — biz bog&rsquo;lanamiz va sizga mos vaqtni tanlaymiz.</p>
+            <input type="hidden" name="_subject" value="Zaman — sinov darsi murojaati (inline)" />
+            <input type="hidden" name="form_source" value="lead-inline" />
+            <h3 class="font-display text-3xl leading-none" data-i18n="LEAD.TITLE">Sinov darsiga yozilish</h3>
+            <p class="mt-2 text-sm text-zinc-500" data-i18n="LEAD.DESC">Yozib qoldiring — biz bog&rsquo;lanamiz va sizga mos vaqtni tanlaymiz.</p>
 
             <div class="mt-6 space-y-4">
               <div>
-                <label class="text-xs uppercase tracking-widest text-zinc-500" for="name">Ismingiz</label>
-                <input id="name" name="name" type="text" required autocomplete="name"
+                <label class="text-xs uppercase tracking-widest text-zinc-500" for="name" data-i18n="LEAD.NAME_LABEL">Ismingiz</label>
+                <input id="name" name="name" type="text" required minlength="2" autocomplete="name"
+                       data-i18n-attr="placeholder:LEAD.NAME_PLACEHOLDER"
                        class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition"
                        placeholder="Masalan, Asilbek" />
               </div>
               <div>
-                <label class="text-xs uppercase tracking-widest text-zinc-500" for="phone">Telefon raqam</label>
+                <label class="text-xs uppercase tracking-widest text-zinc-500" for="phone" data-i18n="LEAD.PHONE_LABEL">Telefon raqam</label>
                 <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel"
+                       pattern="^\+998 \d{2} \d{3} \d{2} \d{2}$"
+                       data-i18n-attr="placeholder:LEAD.PHONE_PLACEHOLDER"
                        class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition"
                        placeholder="+998 __ ___ __ __" />
               </div>
               <div>
-                <label class="text-xs uppercase tracking-widest text-zinc-500" for="course">Qiziqtirgan kurs</label>
+                <label class="text-xs uppercase tracking-widest text-zinc-500" for="course" data-i18n="LEAD.COURSE_LABEL">Qiziqtirgan kurs</label>
                 <select id="course" name="course"
                         class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition">
                   <option>CEFR &amp; at-Tanall (790k/oy)</option>
                   <option>Fonetika (590k/oy)</option>
                   <option>Individual dars (2.4M/oy)</option>
+                  <option>Sarf-Nahv</option>
                   <option>Hali tanlamadim — maslahat kerak</option>
                 </select>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-full justify-center mt-7">
+            <button type="submit" class="btn btn-primary w-full justify-center mt-7" data-i18n="LEAD.SUBMIT">
               Yuborish
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
 
             <p id="form-success" class="hidden mt-4 text-sm text-emerald-600">
@@ -1006,73 +1172,315 @@
     </div>
   </section>
 
+  <!-- SEO long-form block -->
+  <section class="relative py-20 bg-cream/40 border-t border-zinc-200/60">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl sm:text-4xl leading-tight" data-i18n="SEO.H1">
+        Toshkentda Arab tili kurslari — CEFR, at-Tanall, Fonetika
+      </h2>
+      <div class="mt-6 space-y-4 text-zinc-700 leading-relaxed">
+        <p data-i18n="SEO.P1">
+          Zaman Akademiyasi 2022-yilda Toshkent shahrida ochilgan Arab tili o&rsquo;qitish markazi. Toshkentdagi yagona Akademiyalardan biri sifatida biz o&rsquo;quvchilarimizni nafaqat tilni o&rsquo;rganishga, balki CEFR (Common European Framework of Reference) va at-Tanall xalqaro sertifikatlariga tayyorlaymiz.
+        </p>
+        <p data-i18n="SEO.P2">
+          Arab tili — Qur&rsquo;on tili, milliardlab musulmonning ibodat tili va dunyodagi eng katta 22 davlat rasmiy tili. Uni bilish diniy bilimlarni asl manbadan o&rsquo;rganish, Saudiya, BAA, Misr va boshqa arab davlatlarida ta&rsquo;lim olish, hamda xalqaro biznesda yangi imkoniyatlar ochish demakdir.
+        </p>
+        <p data-i18n="SEO.P3">
+          Ustozlarimiz — C1/C2 darajadagi mutaxassislar, jumladan Misrdan kelgan native arab muallim. Haftasiga 4 marta dars, kichik guruhlar, doimiy nazorat va aniq metodika — bularning birlashmasi 10–12 oyda B2/C1 darajaga olib chiqadi.
+        </p>
+      </div>
+
+      <div class="mt-10 divide-y divide-zinc-200">
+        <details class="py-5 group">
+          <summary class="flex items-start justify-between gap-6">
+            <span class="font-display text-xl sm:text-2xl leading-snug">Nima uchun aynan arab tili?</span>
+            <span class="acc-icon shrink-0 text-2xl text-zinc-400 leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-zinc-600 leading-relaxed">
+            Arab tili — diniy adabiyot, fiqh, tafsir, hadis manbalarini asl matnda o&rsquo;qish imkoniyati. Bundan tashqari Saudiya, BAA, Qatar va Misrdagi universitetlarga kirish, xalqaro tashkilotlarda ishlash va arab davlatlari bilan biznes uchun zamonaviy ko&rsquo;nikma.
+          </p>
+        </details>
+        <details class="py-5 group">
+          <summary class="flex items-start justify-between gap-6">
+            <span class="font-display text-xl sm:text-2xl leading-snug">CEFR va at-Tanall o&rsquo;rtasidagi farq nima?</span>
+            <span class="acc-icon shrink-0 text-2xl text-zinc-400 leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-zinc-600 leading-relaxed">
+            CEFR — yevropa standarti bo&rsquo;yicha til darajalari (A1 dan C2 gacha). at-Tanall — arab tilini xorijiyni baholash uchun maxsus dastur. Bizning kursimiz har ikkala imtihonga bir vaqtda tayyorlaydi.
+          </p>
+        </details>
+        <details class="py-5 group">
+          <summary class="flex items-start justify-between gap-6">
+            <span class="font-display text-xl sm:text-2xl leading-snug">Sarf va Nahv nimani anglatadi?</span>
+            <span class="acc-icon shrink-0 text-2xl text-zinc-400 leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-zinc-600 leading-relaxed">
+            Sarf — arab tili morfologiyasi (so&rsquo;z yasalishi va o&rsquo;zgarishi). Nahv — sintaksis (gap qurilishi). Bu ikki bo&rsquo;lim chuqurlashtirilgan kursimizning asosini tashkil etadi va sertifikatga tayyorlanishda muhim rol o&rsquo;ynaydi.
+          </p>
+        </details>
+        <details class="py-5 group">
+          <summary class="flex items-start justify-between gap-6">
+            <span class="font-display text-xl sm:text-2xl leading-snug">Fonetika kursi kimga kerak?</span>
+            <span class="acc-icon shrink-0 text-2xl text-zinc-400 leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-zinc-600 leading-relaxed">
+            Boshlovchilarga — arab harflarini xatosiz o&rsquo;qishni o&rsquo;rganmoqchi bo&rsquo;lganlar uchun. 3 oylik kurs yakunida o&rsquo;quvchi Qur&rsquo;onni mustaqil o&rsquo;qiy oladi va keyingi grammatik kurslarga mukammal asos quradi.
+          </p>
+        </details>
+        <details class="py-5 group">
+          <summary class="flex items-start justify-between gap-6">
+            <span class="font-display text-xl sm:text-2xl leading-snug">Native arab muallim bilan dars nima beradi?</span>
+            <span class="acc-icon shrink-0 text-2xl text-zinc-400 leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-zinc-600 leading-relaxed">
+            Ona tili Arab bo&rsquo;lgan ustoz — bu to&rsquo;g&rsquo;ri talaffuz, jonli til, urf-odat va dialektlar bilan tanishish. Bizda Misrdan kelgan ustoz Mahmud al-Hashimi haftasiga bir necha bor amaliyot darslarini o&rsquo;tkazadi.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="relative bg-ink text-zinc-400 pt-16 pb-10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-10">
-        <div class="lg:col-span-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <!-- Col 1: brand + tagline + footer lang switcher -->
+        <div class="lg:col-span-4">
           <div class="flex items-center gap-3">
             <span class="font-display text-4xl text-white leading-none">Zaman</span>
             <span class="arabic-mark text-2xl text-zinc-500">زمان</span>
           </div>
-          <p class="mt-5 max-w-md text-sm leading-relaxed">
+          <p class="mt-5 max-w-sm text-sm leading-relaxed">
             Toshkentdagi Arab tili akademiyasi. CEFR va at-Tanall xalqaro sertifikatlariga tayyorlov.
             2022-yildan beri.
           </p>
+          <div class="mt-5 flex items-center gap-2 text-sm">
+            <button data-lang-btn="uz" class="px-3 py-1.5 rounded-full hover:bg-white/10 transition">UZ</button>
+            <button data-lang-btn="en" class="px-3 py-1.5 rounded-full hover:bg-white/10 transition">EN</button>
+            <button data-lang-btn="ru" class="px-3 py-1.5 rounded-full hover:bg-white/10 transition">RU</button>
+          </div>
         </div>
-        <div class="lg:col-span-3">
-          <div class="text-xs uppercase tracking-widest text-zinc-500">Saytda</div>
+
+        <!-- Col 2: Saytda -->
+        <div class="lg:col-span-2">
+          <div class="text-xs uppercase tracking-widest text-zinc-500" data-i18n="FOOTER.COL_SITE">Saytda</div>
           <ul class="mt-4 space-y-2 text-sm">
-            <li><a href="#kurslar" class="hover:text-white transition">Kurslar</a></li>
-            <li><a href="#nimaga" class="hover:text-white transition">Nima uchun biz</a></li>
-            <li><a href="#narxlar" class="hover:text-white transition">Narxlar</a></li>
-            <li><a href="#savol-javob" class="hover:text-white transition">Savol-javob</a></li>
-            <li><a href="#aloqa" class="hover:text-white transition">Aloqa</a></li>
+            <li><a href="#kurslar" class="hover:text-white transition" data-i18n="NAV.COURSES">Kurslar</a></li>
+            <li><a href="#ustozlar" class="hover:text-white transition" data-i18n="NAV.TEACHERS">Ustozlar</a></li>
+            <li><a href="#galereya" class="hover:text-white transition" data-i18n="NAV.GALLERY">Galereya</a></li>
+            <li><a href="#natijalar" class="hover:text-white transition" data-i18n="NAV.RESULTS">Natijalar</a></li>
+            <li><a href="#narxlar" class="hover:text-white transition" data-i18n="NAV.PRICING">Narxlar</a></li>
+            <li><a href="#savol-javob" class="hover:text-white transition" data-i18n="NAV.FAQ">Savol-javob</a></li>
+            <li><a href="#aloqa" class="hover:text-white transition" data-i18n="NAV.CONTACT">Aloqa</a></li>
           </ul>
         </div>
-        <div class="lg:col-span-4">
-          <div class="text-xs uppercase tracking-widest text-zinc-500">Aloqa</div>
+
+        <!-- Col 3: Aloqa -->
+        <div class="lg:col-span-3">
+          <div class="text-xs uppercase tracking-widest text-zinc-500" data-i18n="FOOTER.COL_CONTACT">Aloqa</div>
           <ul class="mt-4 space-y-2 text-sm tabular">
             <li><a href="tel:+998900410042" class="hover:text-white transition">+998 90 041 00 42</a></li>
             <li><a href="https://t.me/arabtili_admin" class="hover:text-white transition">Telegram: @arabtili_admin</a></li>
             <li><a href="https://instagram.com/zamanakademiya" class="hover:text-white transition">Instagram: @zamanakademiya</a></li>
             <li><a href="mailto:zamanakademiya@gmail.com" class="hover:text-white transition">zamanakademiya@gmail.com</a></li>
           </ul>
+          <p class="mt-4 text-xs text-zinc-500 leading-relaxed">
+            Toshkent sh., Olmazor t.,<br/>Qiziltut tor ko&rsquo;chasi 84-1
+          </p>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="lg:col-span-3">
+          <div class="text-xs uppercase tracking-widest text-zinc-500" data-i18n="NEWSLETTER.TITLE">Yangiliklarga obuna</div>
+          <p class="mt-4 text-sm leading-relaxed" data-i18n="NEWSLETTER.DESC">
+            Yangi guruhlar va aksiyalar haqida xabardor bo&rsquo;ling.
+          </p>
+          <form data-newsletter class="mt-4 flex gap-2" novalidate>
+            <input type="hidden" name="_subject" value="Zaman — newsletter signup" />
+            <input type="hidden" name="form_source" value="newsletter-footer" />
+            <input type="email" name="email" required autocomplete="email"
+                   data-i18n-attr="placeholder:NEWSLETTER.PLACEHOLDER"
+                   placeholder="Email manzilingiz"
+                   class="flex-1 min-w-0 px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-white/30 transition" />
+            <button type="submit" class="px-4 py-2.5 rounded-xl bg-white text-zinc-900 text-sm font-medium hover:bg-zinc-200 transition shrink-0" data-i18n="NEWSLETTER.SUBMIT">
+              Obuna
+            </button>
+          </form>
         </div>
       </div>
 
+      <!-- Bottom row -->
       <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-zinc-500">
-        <div>© <span id="year"></span> Zaman Xorijiy Tillar Akademiyasi. Barcha huquqlar himoyalangan.</div>
-        <div class="font-display italic">&ldquo;Eng yaxshi sarmoya — kelajak uchun sarmoya.&rdquo;</div>
+        <div class="flex flex-wrap items-center gap-4">
+          <span>© <span id="year"></span> Zaman Xorijiy Tillar Akademiyasi. <span data-i18n="FOOTER.RIGHTS">Barcha huquqlar himoyalangan.</span></span>
+          <a href="public-offer.html" class="hover:text-white transition" data-i18n="FOOTER.OFFER">Ommaviy oferta</a>
+          <a href="privacy.html" class="hover:text-white transition" data-i18n="FOOTER.PRIVACY">Maxfiylik siyosati</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://t.me/zamanakademiya" target="_blank" rel="noopener" aria-label="Telegram" class="hover:text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 17.94 9.6 21.1c.46 0 .66-.2.9-.43l2.16-2.06 4.48 3.27c.82.45 1.4.21 1.62-.76l2.93-13.72c.27-1.21-.44-1.68-1.24-1.38L2.43 9.41c-1.19.46-1.17 1.12-.2 1.42l4.7 1.46 10.92-6.88c.51-.34.98-.15.6.19"/></svg>
+          </a>
+          <a href="https://instagram.com/zamanakademiya" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://tiktok.com/zamanakademiya" target="_blank" rel="noopener" aria-label="TikTok" class="hover:text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-6.39 6.84A6.84 6.84 0 0 0 10.4 23a6.84 6.84 0 0 0 6.83-6.84V9.55a8.16 8.16 0 0 0 4.36 1.31V7.4a4.85 4.85 0 0 1-2-.71Z"/></svg>
+          </a>
+          <a href="https://youtube.com/zamanakademiya5072" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.58 7.19a2.52 2.52 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42A2.52 2.52 0 0 0 2.42 7.19 26.32 26.32 0 0 0 2 12a26.32 26.32 0 0 0 .42 4.81 2.52 2.52 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42a2.52 2.52 0 0 0 1.77-1.77A26.32 26.32 0 0 0 22 12a26.32 26.32 0 0 0-.42-4.81ZM10 15V9l5.2 3Z"/></svg>
+          </a>
+          <a href="https://facebook.com/zamanakademiya" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-7H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.88h-2.33v7A10 10 0 0 0 22 12Z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- Global lead modal -->
+  <div data-lead-modal role="dialog" aria-modal="true" aria-labelledby="lead-modal-title"
+       class="hidden fixed inset-0 z-[90] items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden relative">
+      <button type="button" data-lead-close aria-label="Yopish"
+              class="absolute top-3 right-3 w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 transition flex items-center justify-center z-10">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+      </button>
+      <div class="p-6 sm:p-8">
+        <h2 id="lead-modal-title" class="font-display text-3xl sm:text-4xl leading-none" data-i18n="LEAD.TITLE">Sinov darsiga yozilish</h2>
+        <p class="mt-2 text-sm text-zinc-500" data-i18n="LEAD.DESC">Yozib qoldiring — biz bog’lanamiz va sizga mos vaqtni tanlaymiz.</p>
 
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-in');
-          io.unobserve(e.target);
-        }
-      }
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        <form class="mt-6 space-y-4" novalidate>
+          <input type="hidden" name="_subject" value="Zaman — sinov darsi murojaati" />
+          <input type="hidden" name="form_source" value="lead-modal" />
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-name" data-i18n="LEAD.NAME_LABEL">Ismingiz</label>
+            <input id="lm-name" name="name" type="text" required minlength="2" autocomplete="name"
+                   data-i18n-attr="placeholder:LEAD.NAME_PLACEHOLDER"
+                   class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition"
+                   placeholder="Masalan, Asilbek" />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-phone" data-i18n="LEAD.PHONE_LABEL">Telefon raqam</label>
+            <input id="lm-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel"
+                   pattern="^\+998 \d{2} \d{3} \d{2} \d{2}$"
+                   data-i18n-attr="placeholder:LEAD.PHONE_PLACEHOLDER"
+                   class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition"
+                   placeholder="+998 __ ___ __ __" />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-zinc-500" for="lm-course" data-i18n="LEAD.COURSE_LABEL">Qiziqtirgan kurs</label>
+            <select id="lm-course" name="course"
+                    class="mt-2 w-full px-4 py-3 rounded-xl border border-zinc-200 bg-white focus:outline-none focus:border-zinc-900 transition">
+              <option>CEFR &amp; at-Tanall (790k/oy)</option>
+              <option>Fonetika (590k/oy)</option>
+              <option>Individual dars (2.4M/oy)</option>
+              <option>Sarf-Nahv</option>
+              <option>Hali tanlamadim — maslahat kerak</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-full justify-center" data-i18n="LEAD.SUBMIT">Yuborish</button>
+          <p data-lead-error class="hidden mt-2 text-sm text-rose-600"></p>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            Yuborish orqali siz bog’lanishimizga rozilik bildirgan bo’lasiz.
+          </p>
+        </form>
 
-    // Form submit (front-end only stub — wire to your backend / Telegram bot)
-    const form = document.getElementById('lead-form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.name.value.trim();
-      const phone = form.phone.value.trim();
-      if (!name || !phone) return;
-      document.getElementById('form-success').classList.remove('hidden');
-      form.reset();
-    });
+        <div data-lead-success class="hidden text-center py-6">
+          <div class="mx-auto w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg>
+          </div>
+          <h3 class="mt-4 font-display text-3xl leading-none" data-i18n="LEAD.SUCCESS_TITLE">Rahmat!</h3>
+          <p class="mt-2 text-zinc-600 max-w-sm mx-auto" data-i18n="LEAD.SUCCESS_BODY">Murojaatingiz qabul qilindi. Tez orada bog’lanamiz.</p>
+          <div class="mt-5 flex justify-center gap-2 flex-wrap">
+            <a href="https://t.me/arabtili_admin" target="_blank" rel="noopener" class="btn btn-ghost text-sm">@arabtili_admin</a>
+            <a href="https://instagram.com/zamanakademiya" target="_blank" rel="noopener" class="btn btn-ghost text-sm">@zamanakademiya</a>
+            <a href="tel:+998900410042" class="btn btn-ghost text-sm">+998 90 041 00 42</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON-LD: EducationalOrganization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "@id": "https://aaswafes.github.io/zaman-academy-website/#org",
+    "name": "Zaman Xorijiy Tillar Akademiyasi",
+    "alternateName": ["Zaman Akademiya", "Zaman Academy"],
+    "url": "https://aaswafes.github.io/zaman-academy-website/",
+    "logo": "https://aaswafes.github.io/zaman-academy-website/favicon.svg",
+    "image": "https://aaswafes.github.io/zaman-academy-website/img/og-default.svg",
+    "telephone": "+998900410042",
+    "email": "zamanakademiya@gmail.com",
+    "description": "Toshkentdagi Arab tili akademiyasi. CEFR va at-Tanall xalqaro sertifikatlariga tayyorlov.",
+    "foundingDate": "2022",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Qiziltut tor ko‘chasi 84-1, Olmazor tumani",
+      "addressLocality": "Toshkent",
+      "addressCountry": "UZ"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 41.32612, "longitude": 69.23074 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:30", "closes": "17:00" }
+    ],
+    "sameAs": [
+      "https://t.me/zamanakademiya",
+      "https://instagram.com/zamanakademiya",
+      "https://tiktok.com/zamanakademiya",
+      "https://youtube.com/zamanakademiya5072",
+      "https://facebook.com/zamanakademiya"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Arab tili kurslari",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "CEFR & at-Tanall", "description": "B2 yoki C1 darajasi — 10–12 oy", "provider": { "@id": "https://aaswafes.github.io/zaman-academy-website/#org" } }, "price": "790000", "priceCurrency": "UZS" },
+        { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Fonetika va o‘qish", "description": "3 oy — xatosiz o‘qish", "provider": { "@id": "https://aaswafes.github.io/zaman-academy-website/#org" } }, "price": "590000", "priceCurrency": "UZS" },
+        { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Individual dars", "description": "1-1 format, eng tez sur’at", "provider": { "@id": "https://aaswafes.github.io/zaman-academy-website/#org" } }, "price": "2400000", "priceCurrency": "UZS" }
+      ]
+    }
+  }
   </script>
+
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zaman Akademiya",
+    "url": "https://aaswafes.github.io/zaman-academy-website/",
+    "inLanguage": ["uz","en","ru"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://aaswafes.github.io/zaman-academy-website/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Birinchi dars haqiqatan bepulmi?", "acceptedAnswer": { "@type": "Answer", "text": "Ha, har qanday kursning birinchi darsi mutlaqo bepul. Darajangiz aniqlanadi, ustozni va guruhni ko‘rasiz. Yoqmasa — hech qanday majburiyat yo‘q." } },
+      { "@type": "Question", "name": "Bo‘lib to‘lash imkoniyati bormi?", "acceptedAnswer": { "@type": "Answer", "text": "Ha, 1 oyga bo‘lib to‘lash mumkin. Asosiy shart — qatnashilgan darslarga qarzdor bo‘lib qolmaslik. Kredit yoki rassrochka tizimi yo‘q." } },
+      { "@type": "Question", "name": "Yosh chegarasi qanday?", "acceptedAnswer": { "@type": "Answer", "text": "Barcha kurslarimiz 12 yoshdan katta o‘quvchilar uchun." } },
+      { "@type": "Question", "name": "Onlayn dars taklif qilasizmi?", "acceptedAnswer": { "@type": "Answer", "text": "Hozircha darslarimiz Toshkentda, Olmazor tumanidagi filialimizda o‘tkaziladi." } },
+      { "@type": "Question", "name": "Qaytarish (pulni qaytarib olish) bormi?", "acceptedAnswer": { "@type": "Answer", "text": "Agar o‘quvchi o‘qishni tugatsa va balansida ortiqcha pul qolsa — albatta qaytariladi." } },
+      { "@type": "Question", "name": "Hozir aksiya bormi?", "acceptedAnswer": { "@type": "Answer", "text": "Uchta doimiy chegirma har doim amal qiladi: oilada 2+ o‘quvchi (10%), do‘st olib kelish (10%) va 20-sanagacha to‘lov (10%)." } },
+      { "@type": "Question", "name": "Sertifikatim haqiqiyligini qanday tekshirish mumkin?", "acceptedAnswer": { "@type": "Answer", "text": "Davlat sertifikatlarini sertifikat.uzbmb.uz orqali tekshirish mumkin." } }
+    ]
+  }
+  </script>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

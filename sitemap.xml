@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/"/>
+  </url>
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/teachers.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/teachers.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/teachers.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/teachers.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/teachers.html"/>
+  </url>
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/gallery.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/gallery.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/gallery.html"/>
+  </url>
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/certificate.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://aaswafes.github.io/zaman-academy-website/certificate.html?lang=uz"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aaswafes.github.io/zaman-academy-website/certificate.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://aaswafes.github.io/zaman-academy-website/certificate.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aaswafes.github.io/zaman-academy-website/certificate.html"/>
+  </url>
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/public-offer.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://aaswafes.github.io/zaman-academy-website/privacy.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
