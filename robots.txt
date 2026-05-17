@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /certificate.html
+
+Sitemap: https://aaswafes.github.io/zaman-academy-website/sitemap.xml
